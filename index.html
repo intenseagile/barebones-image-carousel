@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+        .carouselImage {
+            display: none;
+        }
+        .carouselImage.active {
+            display: block;
+        }
+    </style>
+    </head>
+    <body>
+		<h1>
+			Simple jQuery Image Carousel
+		</h1>
+		<p>
+			Learn how to code your own <a href="http://intenseagile.com/2015/06/15/creating-a-javascript-image-carousel-a-tutorial.html ">jquery image carousel</a>.
+		</p>
+        <div id="carousel">
+            <div class="carouselImage">
+                <img src="../../img/2015/img1.jpg">
+            </div>
+            <div class="carouselImage">
+                <img src="../../img/2015/img2.jpg">
+            </div>
+            <div class="carouselImage">
+                <img src="../../img/2015/img3.jpg">
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+        <script>
+            $(function() {
+                $('.carouselImage').first().addClass('active');
+
+                setInterval(function() {
+                    $currentImage = $('.carouselImage.active');
+                    $nextImage = $currentImage.next();
+                    
+                    // if our current image is the last in our group of images,
+                    //  our next image will not exist
+                    if($nextImage.length === 0) {
+                        $nextImage = $('.carouselImage').first();
+                    }
+                    $currentImage.removeClass('active');
+                    $nextImage.addClass('active');
+                },5000);
+            });
+        </script>    
+    </body>
+</html>
